@@ -7,39 +7,67 @@ module.exports = function(app, passport) {
 
   //LOGIN 
 
-  app.get('/login', function(req, res) {
+  // app.get('/login', function(req, res) {
 
-    //render the page 
-    res.render('login.ejs', { message: req.flash('loginMessage') }); 
-  })
+  //   //render the page 
+  //   res.render('login.ejs', {
+  //     message: req.flash('loginMessage')
+  //   });
+  // })
   app.get('/signup', function(req, res) {
 
     //render the page 
-    res.render('signup.ejs', { message: req.flash('signupMessage') });
+    res.render('signup.ejs', {
+      message: req.flash('signupMessage')
+    });
 
   })
-  app.get('/profile', isLoggedIn, function(req, res) {
-
+  app.get('/profile', function(req, res) {
+    // console.log("in the /get to /profile")
     //render the page 
     res.render('profile.ejs', {
-    	user: req.user //get the user out of the session
-    	// and pass it to the template. 
+      user: req.user //get the user out of the session
+      // and pass it to the template. 
     })
   })
+
+  //FACEBOOK routes!
+
+  app.get('/auth/facebook', passport.authenticate('facebook',
+    //specific to the facbeook API. if you want something other than the default
+    // you ahve to use the scope property
+    {
+      scope: ['email']
+    }));
+
+  app.get('/auth/facebook/callback',
+    passport.authenticate('facebook', {
+      successRedirect: '/profile',
+      failureRedirect: '/'
+    }));
+
   app.get('/logout', function(req, res) {
-  	req.logout();
-  	res.redirect('/');
+    req.logout();
+    res.redirect('/');
 
   })
 
- 
+  //twitter routes:
 
-//route middleware to make sure that a user is loggedIn yo
+  app.get('/auth/twitter', passport.authenticate('twitter'));
 
-function isLoggedIn(req, res, next){
-	if(req.isAuthenticated()){
-		return next();
-	}
+  app.get('/auth/twitter/callback',
+    passport.authenticate('twitter', {
+      successRedirect: '/profile',
+      failureRedirect: '/'
+    }))
+  //route middleware to make sure that a user is loggedIn yo
 
-	res.redirect('/');
+  // function isLoggedIn(req, res, next) {
+  //   if (req.isAuthenticated()) {
+  //   next();
+  //   }
+  //   console.log("user is not logged in redirecting to home route")
+  //   res.redirect('/');
+  // }
 }
