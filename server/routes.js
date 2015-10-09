@@ -39,10 +39,11 @@ module.exports = function(app, passport) {
   });
 
   app.get('/users', function(req, res) {
-    User.find({'isLoggedIn': 'true'}, function(err, users) {
+    // this gets back all the users except the logged in user. 
+    User.find({'isLoggedIn': 'true', '_id' : { $ne: req.session.passport.user }}, function(err, users) {
       res.send(users);
-    })
-  })
+    });
+  });
 
   app.get('/logout', function(req, res){
     console.log("Logging out", req.session.passport.user);
