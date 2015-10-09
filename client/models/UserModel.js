@@ -4,22 +4,30 @@
 
 var UserModel = Backbone.Model.extend({
 
-  defaults: {
-
-    isLoggedIn: false
-
-
-  },
+  url: '/users/',
 
   initialize: function () {
-    console.log("Is the user Logged In?!?!", this.get("isLoggedIn"));
+    if (window.location.pathname.indexOf("user") !== -1) {
+      this.username = window.location.pathname.slice(6);
+      this.url = '/users/' + this.username;
+      this.set('twitter.username', this.username);
+    }
   },
 
   loginUser: function() {
-    if (!this.get('isLoggedIn')) {
+    debugger;
+    console.log("-------");
+    console.log("Logging in user");
+    console.log("-------");
+    if (!this.get('logged_in')) {
       window.location.href = '/auth/twitter';
-      this.set('isLoggedIn', true);
+      this.set('logged_in', true);
     }
+  },
+
+  logOut: function() {
+    this.set('logged_in', false)
+    window.location.href = '/logout';
   }
 
 
