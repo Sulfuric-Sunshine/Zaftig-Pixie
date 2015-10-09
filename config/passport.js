@@ -38,9 +38,9 @@ module.exports = function(passport) {
         // check if the user is already logged in
         if (!req.user) {
 
-          User.findOne({
+          User.findOneAndUpdate({
             'twitter.id': profile.id
-          }, function(err, user) {
+          }, {'isLoggedIn': 'true' }, function(err, user) {
             if (err)
               return done(err);
 
@@ -51,6 +51,7 @@ module.exports = function(passport) {
                 user.twitter.username = profile.username;
                 user.twitter.displayName = profile.displayName;
                 user.twitter.photo_url = profile.photos[0].value;
+                user.isLoggedIn = true;
                 user.save(function(err) {
                   if (err)
                     return done(err);
@@ -69,6 +70,7 @@ module.exports = function(passport) {
               newUser.twitter.username = profile.username;
               newUser.twitter.displayName = profile.displayName;
               newUser.twitter.photo_url = profile.photos[0].value;
+              newUser.isLoggedIn = true;
               newUser.save(function(err) {
                 if (err)
                   return done(err);
@@ -87,6 +89,7 @@ module.exports = function(passport) {
           user.twitter.username = profile.username;
           user.twitter.displayName = profile.displayName;
           user.twitter.photo_url = profile.photos[0].value;
+          user.isLoggedIn = true;
           user.save(function(err) {
             if (err)
               return done(err);
