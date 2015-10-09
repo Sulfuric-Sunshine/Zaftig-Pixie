@@ -47,12 +47,16 @@ input:disabled {
 
 a.button {
   text-decoration: none;
-  background-color: #419BF9;
-  padding: 10px;
+  background-color: #8CC4FF;
+  padding: 12px 20px;
   color: #fff;
   cursor: pointer;
   margin-top: 10px;
-  float: center;
+  font-weight: bold;
+  font-size: 20px;
+  &:hover {
+    background: #8CC4FF;
+  }
 }
 
 // styles for the typing view! 
@@ -154,4 +158,16 @@ input {
     height: 40px;
     border-radius: 50%;
     margin-right: 8px;
+}
+h2 {
+  color: #555;
+  font-size: 26px;
+  letter-spacing: -1px;
+  font-weight: normal;
+}
+h3 {
+  font-size: 19px;
+  font-weight: normal;
+  color: #999;
+  margin-bottom: 2em;
 }
