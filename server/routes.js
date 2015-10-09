@@ -1,3 +1,4 @@
+var User = require('../server/mongoModels/user.js');
 var path = require('path');
 
 
@@ -13,11 +14,41 @@ module.exports = function(app, passport) {
   });
 
   app.get('/user/:username', function(req, res) {
-    console.log("req.session.passport from getting username is", req.session.passport);
-    res.sendFile(path.join(__dirname + '/../client/index.html'));
+    console.log('------------------------------------------------------------------------');
+    console.log("req.session.passport from getting username is", req.session.passport.user);
+    console.log('------------------------------------------------------------------------');
+    // If the user has been logged out, they shouldn't be able to access this endpoint. 
+    // We will redirect them to the home page. 
+    if (!!req.session.passport.user === false) {
+      res.redirect('/');
+    } else {
+      res.sendFile(path.join(__dirname + '/../client/index.html'));
+    }
+  });
+
+  app.get('/users/:username', function(req, res) {
+    var username = req.params.username;
+    console.log("in /users/username, req.session.passport.user is", req.session.passport.user);
+    if (!!req.session.passport.user === false) {
+      res.redirect('/');
+    } else {
+      User.findOne({ 'twitter.username': username }, function(err, user) {
+        res.send(user);
+      });
+    }
   })
 
+  app.get('/logout', function(req, res){
+    console.log("Logging out", req.session.passport.user);
+    req.logout();
+    res.redirect('/');
+  });
+
   function isLoggedIn(req, res, next) {
+    console.log('-------------------------');
+    console.log("Checking if user is logged in...");
+    console.log('-------------------------');
+
     if (req.isAuthenticated()) {
       next();
     }
