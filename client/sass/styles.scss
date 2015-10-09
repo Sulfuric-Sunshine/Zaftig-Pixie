@@ -15,7 +15,7 @@ body {
 }
 
 .container {
-  width: 800px;
+  width: 900px;
   margin: 0px auto;
   text-align: center;
   font-family: Arial;
@@ -65,7 +65,7 @@ a.button {
   background: white;
   padding: 40px;
   float: left;
-  width: 680px;
+  width: 600px;
   border: 1px solid #ddd;
 }
 
@@ -82,7 +82,7 @@ a.button {
 .stats-view {
   background: white;
   font-size: 12px;
-  width: 100px;
+  width: 88px;
   float: left;
   margin-left: 20px;
   padding: 10px 20px;
@@ -170,4 +170,34 @@ h3 {
   font-weight: normal;
   color: #999;
   margin-bottom: 2em;
+}
+.users-list {
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 4px 22px 12px;
+  margin-left: 20px;
+  width: 172px;
+  float: left;
+  font-size: 14px;
+  text-align: left;
+  a {
+    cursor: pointer;
+    color: #999;
+    text-decoration: underline;
+  }
+  a:hover {
+    color: #aaa;
+  }
+  img {
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    vertical-align: middle;
+    margin-right: 7px;
+    width: 30px;
+  }
+}
+.user-item {
+  float: left;
+  width: 100%;
+  margin-bottom: 10px;
 }

@@ -6,6 +6,7 @@ module.exports = [
   "./client/models/UserModel.js",
   "./client/collections/UsersCollection.js",
   "./client/views/AppView.js",
+  "./client/views/UsersView.js",
   "./client/views/StatsView.js",
   "./client/views/InputView.js",
   "./client/views/ParagraphView.js",
