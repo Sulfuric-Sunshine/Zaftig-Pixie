@@ -130,7 +130,7 @@ var SpeedTyperModel = Backbone.Model.extend({
     this.trigger('gameLose');
   },
 
-  tooManyTypos: function(){
+  tooManyTypos: function() {
     this.set('gameOver', true);
     this.trigger('tooManyTypos')
   },
@@ -220,6 +220,11 @@ var SpeedTyperModel = Backbone.Model.extend({
     }
     this.set('currentIndex', this.get('currentIndex') + 1);
     this.updateWordsPerMinute();
+
+    if (this.get('currentIndex') > 100) {
+      this.set('gameOver', true);
+      this.trigger('toolong')
+    }
   },
 
   getCurrentWord: function() {
@@ -233,11 +238,15 @@ var SpeedTyperModel = Backbone.Model.extend({
   updateWordsPerMinute: function() {
     var start = this.get('startTime');
     var now = Date.now();
+    // difference between date.now() and start, converted to seconds.  
     var elapsed = (now - start) / (1000 * 60);
     var wpm = this.get('numCorrect') / elapsed;
     this.set('wpm', wpm);
     this.trigger('update');
+
+
   },
+
 
   /*
    * currentLine refers to the text being displayed in paragraph view.
