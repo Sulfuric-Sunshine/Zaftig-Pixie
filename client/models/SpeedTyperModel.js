@@ -132,7 +132,7 @@ var SpeedTyperModel = Backbone.Model.extend({
   */
 
   fetchText: function(noUpdate) {
-    console.log("You've called fetchText");
+    // console.log("You've called fetchText");
     var context = this;
 
     this.deferred = this.fetch({
@@ -224,10 +224,10 @@ var SpeedTyperModel = Backbone.Model.extend({
     //
     var wordsPerView = this.get('wordsPerView');
     var index = this.get('currentIndex');
-    console.log("The index is", index);
-    console.log("Paragraph array length", this.get('paragraphArray').length);
+    // console.log("The index is", index);
+    // console.log("Paragraph array length", this.get('paragraphArray').length);
     this.set('currentLine', this.get('paragraphArray').slice(index, index + wordsPerView));
-    console.log("The current line after updateCurrentLine is", this.get('currentLine'));
+    // console.log("The current line after updateCurrentLine is", this.get('currentLine'));
     this.fetchText(true);
     // console.log("updateCurrentLine is pointing to", this.get('paragraphArray').slice(index, index + 10));
   },
