@@ -22,8 +22,7 @@ var userSchema = mongoose.Schema({
     displayName: String,
     username: String,
     photo_url: String,
-  },
-  logged_in: Boolean
+  }
 });
 
 var User = mongoose.model('User', userSchema);
