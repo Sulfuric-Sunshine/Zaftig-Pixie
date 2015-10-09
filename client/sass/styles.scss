@@ -117,3 +117,41 @@ input {
   margin-top: 24px;
 }
 
+.login-view {
+  width: 100%;
+  text-align: right;
+  font-size: 15px;
+  margin-bottom: 3em;
+  display: block;
+  float: left;
+  a {
+    cursor: pointer;
+    color: #999;
+    text-decoration: underline;
+  }
+  a:hover {
+    color: #aaa;
+  }
+  a.twitter-button {
+    background: #00BFFF;
+    padding: 10px 20px;
+    font-weight: 700;
+    text-decoration: none;
+    color: #fff;
+    &:hover {
+      color: #fff;
+      background: #65D8FF;
+    }
+  }
+}
+
+.twitter-img {
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  display: inline-block;
+    vertical-align: middle;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
