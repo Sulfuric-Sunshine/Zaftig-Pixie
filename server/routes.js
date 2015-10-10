@@ -36,12 +36,21 @@ module.exports = function(app, passport) {
         res.send(user);
       });
     }
-  })
+  });
+
+  app.get('/users', function(req, res) {
+    // this gets back all the users except the logged in user. 
+    User.find({'isLoggedIn': 'true', '_id' : { $ne: req.session.passport.user }}, function(err, users) {
+      res.send(users);
+    });
+  });
 
   app.get('/logout', function(req, res){
     console.log("Logging out", req.session.passport.user);
-    req.logout();
-    res.redirect('/');
+    User.findOneAndUpdate({_id: req.session.passport.user}, { isLoggedIn: 'false'},  function(err, user) {
+      req.logout();
+      res.redirect('/');
+    })
   });
 
   function isLoggedIn(req, res, next) {

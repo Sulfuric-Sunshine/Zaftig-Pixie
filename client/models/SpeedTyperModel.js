@@ -28,6 +28,7 @@ var SpeedTyperModel = Backbone.Model.extend({
     wpm: 0,
     practiceMode: false,
     wordsPerView: 30,
+    loggedInUsers: [],
 
     /*
      * 'gameOver' is updated from a socket handler, triggered
@@ -72,6 +73,7 @@ var SpeedTyperModel = Backbone.Model.extend({
     this.set('paragraphArray', this.get('paragraph')
       .split(' '));
     this.updateCurrentLine();
+    this.fetchUsers();
   },
 
 
@@ -172,6 +174,20 @@ var SpeedTyperModel = Backbone.Model.extend({
     });
   },
 
+  fetchUsers: function() {
+    var context = this;
+    this.deferred = this.fetch({
+      url:'/users',
+      success: function(data, response) {
+        console.log("Successfully got users!");
+      }
+    });
+
+    this.deferred.done(function(data) {
+      console.log("The logged in users are", data);
+      context.set('loggedInUsers', data);
+    })
+  },
   /*
    * spaceHandler is called by InputView when a space is pressed by the user.
    *   param 'inputWord' is the word grabbed from the input box.

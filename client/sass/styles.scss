@@ -15,7 +15,7 @@ body {
 }
 
 .container {
-  width: 800px;
+  width: 900px;
   margin: 0px auto;
   text-align: center;
   font-family: Arial;
@@ -47,12 +47,16 @@ input:disabled {
 
 a.button {
   text-decoration: none;
-  background-color: #419BF9;
-  padding: 10px;
+  background-color: #8CC4FF;
+  padding: 12px 20px;
   color: #fff;
   cursor: pointer;
   margin-top: 10px;
-  float: center;
+  font-weight: bold;
+  font-size: 20px;
+  &:hover {
+    background: #8CC4FF;
+  }
 }
 
 // styles for the typing view! 
@@ -61,7 +65,7 @@ a.button {
   background: white;
   padding: 40px;
   float: left;
-  width: 680px;
+  width: 600px;
   border: 1px solid #ddd;
 }
 
@@ -78,7 +82,7 @@ a.button {
 .stats-view {
   background: white;
   font-size: 12px;
-  width: 100px;
+  width: 88px;
   float: left;
   margin-left: 20px;
   padding: 10px 20px;
@@ -154,4 +158,46 @@ input {
     height: 40px;
     border-radius: 50%;
     margin-right: 8px;
+}
+h2 {
+  color: #555;
+  font-size: 26px;
+  letter-spacing: -1px;
+  font-weight: normal;
+}
+h3 {
+  font-size: 19px;
+  font-weight: normal;
+  color: #999;
+  margin-bottom: 2em;
+}
+.users-list {
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 4px 22px 12px;
+  margin-left: 20px;
+  width: 172px;
+  float: left;
+  font-size: 14px;
+  text-align: left;
+  a {
+    cursor: pointer;
+    color: #999;
+    text-decoration: underline;
+  }
+  a:hover {
+    color: #aaa;
+  }
+  img {
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    vertical-align: middle;
+    margin-right: 7px;
+    width: 30px;
+  }
+}
+.user-item {
+  float: left;
+  width: 100%;
+  margin-bottom: 10px;
 }
